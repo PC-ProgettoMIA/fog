@@ -43,7 +43,6 @@ public class AppToCloud {
                                 request.sendJsonObject(jsonDocument)
                                         .onSuccess(res -> {
                                             System.out.println(res.body());
-                                            res.statusCode(200);
                                         });
                             } else {
                                 throw new InternalError("Presence of corrupted digital twins in system.");
@@ -56,5 +55,14 @@ public class AppToCloud {
                 });
             }
         });
+//        while (true) {
+
+//            System.out.println("Stop");
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 }
