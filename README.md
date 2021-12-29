@@ -1,42 +1,70 @@
 # Fog System
+Layer intermedio tra l'**edge** e il **cloud** **centralizzato**.
 
-The fog implements a digital twin for each connected house that takes care of shadowing it. 
-It keeps the information of the connected houses up-to-date and displays it so that children can use it through Snap!. 
-The information received from the houses is forwarded to the cloud.
+Non è un livello obbligato, ma la sua presenza abilita a funzionalità molto importanti,
+come lo shadowing dell'edge, mascherando la complessità della casina e abilitando una comunicazione più robusta e stabile con i client.
+Questo livello richiede maggiori risorse rispetto all'edgee ad uno stesso Fog possono essere collegati più edge e 
+
 #### Software Info
 
-![GitHub last commit](https://img.shields.io/github/last-commit/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub](https://img.shields.io/github/license/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub language count](https://img.shields.io/github/languages/count/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub top language](https://img.shields.io/github/languages/top/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub issues](https://img.shields.io/github/issues/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub repo size](https://img.shields.io/github/repo-size/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub contributors](https://img.shields.io/github/contributors/PC-ProgettoMIA/edge-fog-cloud)
-![Release](https://img.shields.io/github/v/release/PC-ProgettoMIA/edge-fog-cloud?label=Release)
-![CI](https://img.shields.io/github/workflow/status/PC-ProgettoMIA/edge-fog-cloud/CI?label=CI)
-![Website](https://img.shields.io/github/workflow/status/PC-ProgettoMIA/edge-fog-cloud/Website?label=DocWebsite)
+![GitHub](https://img.shields.io/github/license/PC-ProgettoMIA/fog)
+![GitHub language count](https://img.shields.io/github/languages/count/PC-ProgettoMIA/fog)
+![GitHub top language](https://img.shields.io/github/languages/top/PC-ProgettoMIA/fog)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/PC-ProgettoMIA/fog)
+![GitHub issues](https://img.shields.io/github/issues/PC-ProgettoMIA/fog)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/PC-ProgettoMIA/fog)
+![GitHub repo size](https://img.shields.io/github/repo-size/PC-ProgettoMIA/fog)
+![GitHub contributors](https://img.shields.io/github/contributors/PC-ProgettoMIA/fog)
 
 #### Software Progress
-![GitHub issues](https://img.shields.io/github/issues/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/PC-ProgettoMIA/edge-fog-cloud)
-![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/PC-ProgettoMIA/edge-fog-cloud/latest/develop)
-![GitHub last commit](https://img.shields.io/github/last-commit/PC-ProgettoMIA/edge-fog-cloud/develop)
+![GitHub issues](https://img.shields.io/github/issues/PC-ProgettoMIA/fog)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/PC-ProgettoMIA/fog)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/PC-ProgettoMIA/fog)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/PC-ProgettoMIA/fog)
+![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/PC-ProgettoMIA/fog/latest/develop)
+![GitHub last commit](https://img.shields.io/github/last-commit/PC-ProgettoMIA/fog/develop)
 
+
+##Requirements
+
+Il sistema **_fog_** richiede un host risorse hardware di un normale host casalingo:
+- RAM: 8/16 GB
+- HD: 1 TB, in modo da avere abbastanza memoria per poter memorizzare i dati di più casine.
+
+L'host richiede un sistema operativo **Unix** per il deployment del sistema tramite gli script  predefiniti
+<!--, altrimenti su un device Windows richiede di lanciare i comandi compatibitramite -->
 
 ##Deployment
-System deployment involves launching the fog.sh script via the bash shell. 
-```bash
-#To enable execute permissions
-chmod +x fog.sh
+Il deployment può essere effettuato in due modalità in base alle condizioni di utilizzo del sistema.
 
-#Execution
-./fog.sh
+###Caso edge e fog 
+In assenza del cloud e della messa in funzione di una o più casette e un singolo fog, seguire i seguenti passaggi:
+```bash
+#Abilitare i permessi per l'esecuzione dello script.
+chmod 755 only_fog.sh
+#Esecuzione per l'avvio del servizio
+./only_fog.sh
 ```
+
+In questo modo viene effettuato il deployment solo di:
+- subscriber MQTT 
+- server per esporre la Rest API sulla rete locale, in modo da essere raggiunta facilmente dagli applicativi Snap!
+
+
+###Caso edge, fog e cloud
+In presenza del cloud, seguire i seguenti passaggi:
+```bash
+#Abilitare i permessi per l'esecuzione dello script.
+chmod 755 fog_for_cloud.sh
+#Esecuzione per l'avvio del servizio
+./fog_for_cloud.sh
+```
+
+In questo modo viene effettuato il deployment:
+- del subscriber MQTT 
+- del server per esporre la Rest API sulla rete locale 
+- l'applicativo per inviare i dati al cloud del Progetto-MIA.
+
 
 
 # License
