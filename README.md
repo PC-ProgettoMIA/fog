@@ -27,7 +27,7 @@ Questo livello richiede maggiori risorse rispetto all'edgee ad uno stesso Fog po
 
 ##Requirements
 
-Il sistema **_fog_** richiede un host risorse hardware di un normale host casalingo:
+Il **_fog_** richiede un host risorse hardware di un normale host casalingo:
 - RAM: 8/16 GB
 - HD: 1 TB, in modo da avere abbastanza memoria per poter memorizzare i dati di più casine.
 
