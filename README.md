@@ -28,8 +28,8 @@ Questo livello richiede maggiori risorse rispetto all'edgee ad uno stesso Fog po
 ##Requirements
 
 Il **_fog_** richiede un host risorse hardware di un normale host casalingo:
-- RAM: 8/16 GB
-- HD: 1 TB, in modo da avere abbastanza memoria per poter memorizzare i dati di più casine.
+- RAM: 8 GB
+- HD: 128 GB, in modo da avere abbastanza memoria per poter memorizzare i dati di più casine.
 
 L'host richiede un sistema operativo **Unix** per il deployment del sistema tramite gli script  predefiniti
 <!--, altrimenti su un device Windows richiede di lanciare i comandi compatibitramite -->
@@ -41,9 +41,9 @@ Il deployment può essere effettuato in due modalità in base alle condizioni di
 In assenza del cloud e della messa in funzione di una o più casette e un singolo fog, seguire i seguenti passaggi:
 ```bash
 #Abilitare i permessi per l'esecuzione dello script.
-chmod 755 only_fog.sh
+chmod 755 fog.sh
 #Esecuzione per l'avvio del servizio
-./only_fog.sh
+./fog.sh
 ```
 
 In questo modo viene effettuato il deployment solo di:
@@ -55,9 +55,9 @@ In questo modo viene effettuato il deployment solo di:
 In presenza del cloud, seguire i seguenti passaggi:
 ```bash
 #Abilitare i permessi per l'esecuzione dello script.
-chmod 755 fog_for_cloud.sh
+chmod 755 fog-cloud.sh
 #Esecuzione per l'avvio del servizio
-./fog_for_cloud.sh
+./fog-cloud.sh
 ```
 
 In questo modo viene effettuato il deployment:
