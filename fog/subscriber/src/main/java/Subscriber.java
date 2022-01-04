@@ -30,7 +30,7 @@ public class Subscriber {
     public Subscriber() {
         this.mqttClient = MqttClient.builder()
                 .identifier(UUID.randomUUID().toString())
-                .serverHost("localhost")
+                .serverHost("192.168.43.103")
                 .serverPort(1883)
                 .useMqttVersion3()
                 .buildAsync();
