@@ -25,7 +25,7 @@ Questo livello richiede maggiori risorse rispetto all'edgee ad uno stesso Fog po
 ![GitHub last commit](https://img.shields.io/github/last-commit/PC-ProgettoMIA/fog/develop)
 
 
-##Requirements
+## Requirements
 
 Il **_fog_** richiede un host risorse hardware di un normale host casalingo:
 - RAM: 8 GB
@@ -34,10 +34,10 @@ Il **_fog_** richiede un host risorse hardware di un normale host casalingo:
 L'host richiede un sistema operativo **Unix** per il deployment del sistema tramite gli script  predefiniti
 <!--, altrimenti su un device Windows richiede di lanciare i comandi compatibitramite -->
 
-##Deployment
+## Deployment
 Il deployment può essere effettuato in due modalità in base alle condizioni di utilizzo del sistema.
 
-###Caso edge e fog 
+### Caso edge e fog 
 In assenza del cloud e della messa in funzione di una o più casette e un singolo fog, seguire i seguenti passaggi:
 ```bash
 #Abilitare i permessi per l'esecuzione dello script.
@@ -51,7 +51,7 @@ In questo modo viene effettuato il deployment solo di:
 - server per esporre la Rest API sulla rete locale, in modo da essere raggiunta facilmente dagli applicativi Snap!
 
 
-###Caso edge, fog e cloud
+### Caso edge, fog e cloud
 In presenza del cloud, seguire i seguenti passaggi:
 ```bash
 #Abilitare i permessi per l'esecuzione dello script.
