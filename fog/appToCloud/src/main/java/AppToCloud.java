@@ -33,8 +33,7 @@ public class AppToCloud {
                         for (JsonObject jsonDocument : dbResponse.result()) {
                             if (jsonDocument.containsKey("thingId")) {
                                 String thingId = jsonDocument.getString("thingId");
-                                String id = thingId.split(":")[1];
-                                HttpRequest<Buffer> request = client.put(3128, "137.204.107.148", "/api/ditto/" + id);
+                                HttpRequest<Buffer> request = client.put(3128, "137.204.107.148", "/api/ditto/" + thingId);
                                 MultiMap headers = request.headers();
                                 headers.set("content-type", "application/json");
                                 jsonDocument.remove("_id");
