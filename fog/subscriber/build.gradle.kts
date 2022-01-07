@@ -36,6 +36,8 @@ application {
 
 
 dependencies {
+    implementation("io.vertx:vertx-web:4.2.1")
+    implementation("com.sun.mail:javax.mail:1.6.2")
     implementation("org.json:json:20210307")
     implementation("org.slf4j:slf4j-api:_")
     implementation("com.hivemq:hivemq-mqtt-client:_")

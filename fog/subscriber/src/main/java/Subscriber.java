@@ -46,11 +46,12 @@ public class Subscriber {
                         mqttClient.subscribeWith().topicFilter(MQQT_TOPIC).callback(message -> {
                                     String mess = new String(message.getPayloadAsBytes(), StandardCharsets.UTF_8);
                                     JSONObject jsonDT = new JSONObject(mess);
-                                    String id = jsonDT.getString("thingId");
+                                    String thingId = jsonDT.getString("thingId");
+                                    //SendEmailTLS.send(thingId, CheckSensor.corruptedSensors(jsonDT));
                                     MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
-                                    long count = collection.countDocuments(new Document().append("thingId", id));
+                                    long count = collection.countDocuments(new Document().append("thingId", thingId));
                                     if (count != 0) {
-                                        collection.replaceOne(new Document().append("thingId", id), Document.parse(mess));
+                                        collection.replaceOne(new Document().append("thingId", thingId), Document.parse(mess));
 
                                     } else {
                                         collection.insertOne(Document.parse(mess));
