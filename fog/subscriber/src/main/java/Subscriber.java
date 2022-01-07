@@ -6,8 +6,11 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import io.vertx.core.json.JsonObject;
 import org.bson.Document;
 import org.json.JSONObject;
+import utility.CheckSensor;
+import utility.SendEmailTLS;
 
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
@@ -47,7 +50,7 @@ public class Subscriber {
                                     String mess = new String(message.getPayloadAsBytes(), StandardCharsets.UTF_8);
                                     JSONObject jsonDT = new JSONObject(mess);
                                     String thingId = jsonDT.getString("thingId");
-                                    //SendEmailTLS.send(thingId, CheckSensor.corruptedSensors(jsonDT));
+                                    SendEmailTLS.send(thingId, CheckSensor.corruptedSensors(new JsonObject(mess)));
                                     MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
                                     long count = collection.countDocuments(new Document().append("thingId", thingId));
                                     if (count != 0) {
