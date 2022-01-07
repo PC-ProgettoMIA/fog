@@ -1,9 +1,9 @@
 # Fog System
 Layer intermedio tra l'**edge** e il **cloud** **centralizzato**.
 
-Non è un livello obbligato, ma la sua presenza abilita a funzionalità molto importanti,
+Non è un livello obbligato, ma la sua presenza abilita funzionalità molto importanti,
 come lo shadowing dell'edge, mascherando la complessità della casina e abilitando una comunicazione più robusta e stabile con i client.
-Questo livello richiede maggiori risorse rispetto all'edgee ad uno stesso Fog possono essere collegati più edge e 
+Questo livello richiede maggiori risorse rispetto all'edge; ad uno stesso Fog possono essere collegati più edge.
 
 #### Software Info
 
@@ -32,7 +32,7 @@ Il **_fog_** richiede un host risorse hardware di un normale host casalingo:
 - HD: 128 GB, in modo da avere abbastanza memoria per poter memorizzare i dati di più casine.
 
 L'host richiede un sistema operativo **Unix** per il deployment del sistema tramite gli script  predefiniti
-<!--, altrimenti su un device Windows richiede di lanciare i comandi compatibitramite -->
+<!--, altrimenti su un device Windows richiede di lanciare i comandi compatibili tramite GitBash-->
 
 ## Deployment
 Il deployment può essere effettuato in due modalità in base alle condizioni di utilizzo del sistema.
