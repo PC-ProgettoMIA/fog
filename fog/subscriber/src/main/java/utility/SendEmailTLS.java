@@ -11,7 +11,7 @@ public class SendEmailTLS {
     public static void send(final String thingId, final List<String> sensors) {
         if (!sensors.isEmpty()) {
             final String username = "progetto.mia.notification@gmail.com";
-            final String password = "progettoMIA2021";
+            final String password = "";
 
             Properties prop = new Properties();
             prop.put("mail.smtp.host", "smtp.gmail.com");
