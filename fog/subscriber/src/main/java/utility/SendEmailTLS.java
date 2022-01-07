@@ -34,7 +34,9 @@ public class SendEmailTLS {
                 message.setFrom(new InternetAddress("progetto.mia.notification@gmail.com"));
                 message.setRecipients(
                         Message.RecipientType.TO,
-                        InternetAddress.parse("enrico.gnagnarella@studio.unibo.it") /*, enrico.mp@alice.it*/
+                        InternetAddress.parse("enrico.gnagnarella@studio.unibo.it, " +
+                                "ylenia.battistini@studio.unibo.it, " +
+                                "matteo.scucchia@studio.unibo.it")
                 );
                 message.setSubject("Error on house MIA: " + thingId);
                 String text = "La casina di rilevazione con id: " + thingId + "mostra problemi nei seguenti sensori: \n\n";
@@ -43,8 +45,8 @@ public class SendEmailTLS {
                 }
                 text = text + " \n E' richiesto l'intervento di un operatore per riavviare la casetta e controllare i sensori." +
                         "\n\nGrazie dell'attenzione. \n\nProgetto MIA team.";
-                message.setText("Ti voglio bene");
-                Transport.send(text);
+                message.setText(text);
+                Transport.send(message);
 
             } catch (MessagingException e) {
                 e.printStackTrace();
