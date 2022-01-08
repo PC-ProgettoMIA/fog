@@ -50,7 +50,6 @@ public class Subscriber {
                                     String mess = new String(message.getPayloadAsBytes(), StandardCharsets.UTF_8);
                                     JSONObject jsonDT = new JSONObject(mess);
                                     String thingId = jsonDT.getString("thingId");
-                                    SendEmailTLS.send(thingId, CheckSensor.corruptedSensors(new JsonObject(mess)));
                                     MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
                                     long count = collection.countDocuments(new Document().append("thingId", thingId));
                                     if (count != 0) {
