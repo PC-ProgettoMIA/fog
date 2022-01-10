@@ -17,10 +17,10 @@ public class Subscriber {
     private static final String MONGO_CONNECTION = "mongodb://localhost:27017";
     private static final String DB_NAME = "DigitalTwin";
     private static final String COLLECTION_NAME = "digital_twin";
-    private static final String MQQT_TOPIC = "house/mia";
-
+    private static final String MQTT_TOPIC = "house/mia";
+    private static final String BROKER_ADDRESS = "137.204.107.250";
+    private static final int BROKER_PORT = 3128;
     private final Mqtt3AsyncClient mqttClient;
-    private final MongoClient mongoClient;
     private final MongoDatabase database;
 
 
@@ -30,20 +30,20 @@ public class Subscriber {
     public Subscriber() {
         this.mqttClient = MqttClient.builder()
                 .identifier(UUID.randomUUID().toString())
-                .serverHost("137.204.107.250")
-                .serverPort(3128)
+                .serverHost(BROKER_ADDRESS)
+                .serverPort(BROKER_PORT)
                 .useMqttVersion3()
                 .buildAsync();
 
-        this.mongoClient = MongoClients.create(MONGO_CONNECTION);
-        this.database = this.mongoClient.getDatabase(DB_NAME);
+        MongoClient mongoClient = MongoClients.create(MONGO_CONNECTION);
+        this.database = mongoClient.getDatabase(DB_NAME);
 
         this.mqttClient.connect().whenCompleteAsync(
                 (mqtt3ConnAck, throwable) -> {
                     if (throwable != null) {
                         throw new Mqtt3ConnAckException(mqtt3ConnAck, "Error on connection!", throwable);
                     } else {
-                        mqttClient.subscribeWith().topicFilter(MQQT_TOPIC).callback(message -> {
+                        mqttClient.subscribeWith().topicFilter(MQTT_TOPIC).callback(message -> {
                                     String mess = new String(message.getPayloadAsBytes(), StandardCharsets.UTF_8);
                                     JSONObject jsonDT = new JSONObject(mess);
                                     String thingId = jsonDT.getString("thingId");
@@ -70,5 +70,4 @@ public class Subscriber {
     public static void main(String[] args) {
         new Subscriber();
     }
-
 }

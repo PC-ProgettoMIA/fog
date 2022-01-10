@@ -8,6 +8,8 @@ import io.vertx.core.json.JsonObject;
  */
 public class CommonController {
 
+    private static final int ERROR_CODE = 404;
+
     /**
      * Get properties in json.
      *
@@ -35,7 +37,7 @@ public class CommonController {
      */
     public static void propertyNotFound(HttpServerResponse response) {
         response.putHeader("content-type", "application/json");
-        response.setStatusCode(404);
+        response.setStatusCode(ERROR_CODE);
         response.end("Property not found");
     }
 
@@ -46,7 +48,7 @@ public class CommonController {
      */
     public static void thingNotFound(HttpServerResponse response) {
         response.putHeader("content-type", "application/json");
-        response.setStatusCode(404);
+        response.setStatusCode(ERROR_CODE);
         response.end("Thing not found");
     }
 

@@ -1,4 +1,3 @@
-import io.vertx.core.Handler;
 import io.vertx.core.MultiMap;
 import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
@@ -15,6 +14,8 @@ public class AppToCloud {
     private static final String CONNECTION_STRING = "mongodb://localhost:27017";
     private static final String DB_NAME = "DigitalTwin";
     private static final String COLLECTION_NAME = "digital_twin";
+    private static final String CLOUD_ADDRESS = "137.204.107.148";
+    private static final int CLOUD_PORT = 3128;
     private static final long DELAY = 900000; // 15min in millis
 
     public static void main(String[] args) {
@@ -30,7 +31,7 @@ public class AppToCloud {
                 for (JsonObject jsonDocument : dbResponse.result()) {
                     if (jsonDocument.containsKey("thingId")) {
                         String thingId = jsonDocument.getString("thingId");
-                        HttpRequest<Buffer> request = client.put(3128, "137.204.107.148", "/api/ditto/" + thingId);
+                        HttpRequest<Buffer> request = client.put(CLOUD_PORT, CLOUD_ADDRESS, "/api/ditto/" + thingId);
                         MultiMap headers = request.headers();
                         headers.set("content-type", "application/json");
                         jsonDocument.remove("_id");
@@ -49,14 +50,5 @@ public class AppToCloud {
                 throw new InternalError("Database offline.");
             }
         }));
-        // while (true) {
-
-        // System.out.println("Stop");
-        // try {
-        // Thread.sleep(1000);
-        // } catch (InterruptedException e) {
-        // e.printStackTrace();
-        // }
-        // }
     }
 }
