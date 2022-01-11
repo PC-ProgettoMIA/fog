@@ -2,6 +2,8 @@ package server;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
+import io.vertx.core.http.HttpClient;
+import io.vertx.core.http.HttpClientOptions;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.net.JksOptions;
@@ -24,17 +26,10 @@ public class Server extends AbstractVerticle {
     @Override
     public void start() throws Exception {
         initialize();
-
-//        HttpClient client = vertx.createHttpClient(new HttpClientOptions()
-//                .setVerifyHost(false)
-//                .setSsl(true)
-//                .setTrustStoreOptions(new JksOptions().setPassword("changeit")
-//                        .setPath("keystore.jks")));
-
         getVertx().createHttpServer(new HttpServerOptions()
-                .setSsl(true)
-                .setKeyStoreOptions(new JksOptions().setPassword("changeit")
-                        .setPath(System.getProperty("user.dir") + System.getProperty("file.separator") + "keystore.jks")))
+                        .setSsl(true)
+                        .setKeyStoreOptions(new JksOptions().setPassword("changeit")
+                                .setPath(System.getProperty("user.dir") + System.getProperty("file.separator") + "keystore.jks")))
                 .requestHandler(this.routes.getRouter()).listen(localPort);
         System.out.println("Server online on port " + localPort);
     }
