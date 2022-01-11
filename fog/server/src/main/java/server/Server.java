@@ -24,13 +24,18 @@ public class Server extends AbstractVerticle {
     @Override
     public void start() throws Exception {
         initialize();
-        getVertx().createHttpServer(
-                new HttpServerOptions()
-                        .setSsl(true)
-                        .setKeyStoreOptions(new JksOptions()
-                                .setPath(System.getProperty("user.dir") + System.getProperty("file.separator") + "server-keystore.jks")
-                                .setPassword("secret"))
-        ).requestHandler(this.routes.getRouter()).listen(localPort);
+
+//        HttpClient client = vertx.createHttpClient(new HttpClientOptions()
+//                .setVerifyHost(false)
+//                .setSsl(true)
+//                .setTrustStoreOptions(new JksOptions().setPassword("changeit")
+//                        .setPath("keystore.jks")));
+
+        getVertx().createHttpServer(new HttpServerOptions()
+                .setSsl(true)
+                .setKeyStoreOptions(new JksOptions().setPassword("changeit")
+                        .setPath(System.getProperty("user.dir") + System.getProperty("file.separator") + "keystore.jks")))
+                .requestHandler(this.routes.getRouter()).listen(localPort);
         System.out.println("Server online on port " + localPort);
     }
 
