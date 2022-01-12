@@ -23,17 +23,15 @@ public class Routes {
            RainController rainController,
            UvController uvController) {
         this.router = Router.router(vertx);
-        router.route().handler(BodyHandler.create()).handler(CorsHandler.create("https://snap.berkeley.edu/")
+        router.route().handler(BodyHandler.create()).handler(CorsHandler.create("https://snap.berkeley.edu")
                 .allowedMethod(io.vertx.core.http.HttpMethod.GET)
                 .allowedMethod(io.vertx.core.http.HttpMethod.POST)
                 .allowedMethod(io.vertx.core.http.HttpMethod.OPTIONS)
                 .allowCredentials(true)
-                .allowedHeader("Access-Control-Allow-Headers")
-                .allowedHeader("Authorization")
                 .allowedHeader("Access-Control-Allow-Method")
                 .allowedHeader("Access-Control-Allow-Origin")
                 .allowedHeader("Access-Control-Allow-Credentials")
-                .allowedHeader("Content-Type"));;
+                .allowedHeader("Content-Type"));
 
         router.get("/api/temp/:thingId").handler(temperatureController::getTemperature);
         router.get("/api/hum/:thingId").handler(humidityController::getHumidity);
