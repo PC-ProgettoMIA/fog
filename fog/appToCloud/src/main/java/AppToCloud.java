@@ -6,6 +6,7 @@ import io.vertx.ext.auth.authentication.UsernamePasswordCredentials;
 import io.vertx.ext.mongo.MongoClient;
 import io.vertx.ext.web.client.HttpRequest;
 import io.vertx.ext.web.client.WebClient;
+import io.vertx.ext.web.client.WebClientOptions;
 
 /**
  * Application to send data to cloud.
@@ -14,14 +15,18 @@ public class AppToCloud {
     private static final String CONNECTION_STRING = "mongodb://localhost:27017";
     private static final String DB_NAME = "DigitalTwin";
     private static final String COLLECTION_NAME = "digital_twin";
-    private static final String CLOUD_ADDRESS = "137.204.107.148";
-    private static final int CLOUD_PORT = 3128;
+    //private static final String CLOUD_ADDRESS = "137.204.107.148";
+    //private static final int CLOUD_PORT = 3128;
     private static final String ABSOLUTE_ADDRESS = "https://137.204.107.148:3128/api/ditto/";
-    private static final long DELAY = 1000; // 15min in millis
+    private static final long DELAY = 900000; // 15min in millis
 
     public static void main(String[] args) {
         Vertx vertx = Vertx.vertx();
-        WebClient client = WebClient.create(vertx);
+        WebClientOptions options = new WebClientOptions();
+        options.setSsl(true);
+        options.setTrustAll(true);
+        options.setVerifyHost(false);
+        WebClient client = WebClient.create(vertx, options);
         JsonObject config = new JsonObject();
         config.put("connection_string", CONNECTION_STRING);
         config.put("db_name", DB_NAME);
