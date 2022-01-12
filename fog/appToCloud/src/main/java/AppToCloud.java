@@ -16,7 +16,8 @@ public class AppToCloud {
     private static final String COLLECTION_NAME = "digital_twin";
     private static final String CLOUD_ADDRESS = "137.204.107.148";
     private static final int CLOUD_PORT = 3128;
-    private static final long DELAY = 900000; // 15min in millis
+    private static final String ABSOLUTE_ADDRESS = "https://137.204.107.148:3128/api/ditto/";
+    private static final long DELAY = 1000; // 15min in millis
 
     public static void main(String[] args) {
         Vertx vertx = Vertx.vertx();
@@ -31,7 +32,7 @@ public class AppToCloud {
                 for (JsonObject jsonDocument : dbResponse.result()) {
                     if (jsonDocument.containsKey("thingId")) {
                         String thingId = jsonDocument.getString("thingId");
-                        HttpRequest<Buffer> request = client.put(CLOUD_PORT, CLOUD_ADDRESS, "/api/ditto/" + thingId);
+                        HttpRequest<Buffer> request = client.putAbs(ABSOLUTE_ADDRESS + thingId);
                         MultiMap headers = request.headers();
                         headers.set("content-type", "application/json");
                         jsonDocument.remove("_id");

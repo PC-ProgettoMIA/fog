@@ -23,12 +23,12 @@ import java.util.Base64;
  */
 public class Server extends AbstractVerticle {
 
-    private static final String PATH_TO_RESOURCES = "server/src/main/resources";
+    private static final String PATH_TO_RESOURCES = "src/main/resources";
     private static final String ENCRYPTION_PROTOCOL = "AES/ECB/PKCS5PADDING";
 
     private final int localPort;
     private Routes routes;
-    
+
     public Server(final int localPort) {
         this.localPort = localPort;
     }
