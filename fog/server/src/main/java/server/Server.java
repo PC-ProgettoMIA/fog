@@ -2,11 +2,7 @@ package server;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
-import io.vertx.core.http.HttpClient;
-import io.vertx.core.http.HttpClientOptions;
-import io.vertx.core.http.HttpServerOptions;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.net.JksOptions;
 import io.vertx.ext.mongo.MongoClient;
 import server.controllers.*;
 
@@ -26,11 +22,11 @@ public class Server extends AbstractVerticle {
     @Override
     public void start() throws Exception {
         initialize();
-        getVertx().createHttpServer(new HttpServerOptions()
+        getVertx().createHttpServer(/*new HttpServerOptions()
                         .setSsl(true)
                         .setKeyStoreOptions(new JksOptions().setPassword("changeit")
-                                .setPath(System.getProperty("user.dir") + System.getProperty("file.separator") + "keystore.jks")))
-                .requestHandler(this.routes.getRouter()).listen(localPort);
+                                .setPath(System.getProperty("user.dir") + System.getProperty("file.separator") + "keystore.jks"))*/
+        ).requestHandler(this.routes.getRouter()).listen(localPort);
         System.out.println("Server online on port " + localPort);
     }
 
