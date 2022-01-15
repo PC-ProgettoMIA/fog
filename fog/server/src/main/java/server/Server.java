@@ -25,6 +25,7 @@ public class Server extends AbstractVerticle {
 
     private static final String PATH_TO_RESOURCES = "src/main/resources";
     private static final String ENCRYPTION_PROTOCOL = "AES/ECB/PKCS5PADDING";
+    private static final int PORT = 3001;
 
     private final int localPort;
     private Routes routes;
@@ -73,7 +74,7 @@ public class Server extends AbstractVerticle {
     }
 
     public static void main(String[] args) {
-        AbstractVerticle service = new Server(3001);
+        AbstractVerticle service = new Server(PORT);
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(service);
     }

@@ -46,22 +46,5 @@ public class TemperatureController {
                 res.cause().printStackTrace();
             }
         });
-
-    /*
-    this.db.find("digital_twin", new JsonObject(),  res -> {
-      if (res.succeeded()) {
-        for (JsonObject json : res.result()) {
-          double temperature = json.getDouble("temp");
-          HttpServerResponse response = ctx.response();
-          response.putHeader("content-type", "application/json");
-          response.end(new JsonObject().put("temp", temperature).encodePrettily());
-        }
-      } else {
-        res.cause().printStackTrace();
-      }
-    });
-
-     */
-
     }
 }

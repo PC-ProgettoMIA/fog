@@ -15,8 +15,6 @@ public class AppToCloud {
     private static final String CONNECTION_STRING = "mongodb://localhost:27017";
     private static final String DB_NAME = "DigitalTwin";
     private static final String COLLECTION_NAME = "digital_twin";
-    //private static final String CLOUD_ADDRESS = "137.204.107.148";
-    //private static final int CLOUD_PORT = 3128;
     private static final String ABSOLUTE_ADDRESS = "https://137.204.107.148:3128/api/ditto/";
     private static final long DELAY = 900000; // 15min in millis
 
