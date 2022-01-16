@@ -31,8 +31,7 @@ Il **_fog_** richiede un host risorse hardware di un normale host casalingo:
 - RAM: 8 GB
 - HD: 128 GB, in modo da avere abbastanza memoria per poter memorizzare i dati di più casine.
 
-L'host richiede un sistema operativo **Unix** per il deployment del sistema tramite gli script  predefiniti
-<!--, altrimenti su un device Windows richiede di lanciare i comandi compatibili tramite GitBash-->
+L'host richiede un sistema operativo **Unix** e l'installazione di MongoDB per il deployment del sistema tramite gli script predefiniti.
 
 ## Deployment
 Il deployment può essere effettuato in due modalità in base alle condizioni di utilizzo del sistema.
